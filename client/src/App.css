@@ -1,0 +1,132 @@
+/* General app styling */
+.app {
+    height: 100vh;
+    background-image: url('/public/background-image.jpg'); /* Make sure this path is correct */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* 3D perspective for the flip effect */
+  }
+
+/* Flip Card */
+.flip-card {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    transition: transform 0.6s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+/* Flip card when flipped */
+.flip-card.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Flip Card Inner */
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+/* Front and back sides */
+.flip-card-front,
+.flip-card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Front side: Login Form */
+.flip-card-front {
+    z-index: 2;
+}
+
+/* Back side: Register Form */
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Title and Button Styling */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Form styling */
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Adjusted width for better form alignment */
+}
+
+input {
+    margin: 10px 0;
+    padding: 12px;
+    font-size: 1rem;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding is accounted for */
+}
+
+/* Button styling */
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Flip button specific styling */
+.flip-button {
+    background-color: #008CBA;
+    margin-top: 10px;
+}
+
+.flip-button:hover {
+    background-color: #007bb5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .flip-card {
+        width: 90%;
+        height: 350px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    input {
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px 0;
+    }
+}
