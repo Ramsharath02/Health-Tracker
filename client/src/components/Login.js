@@ -6,20 +6,35 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // useHistory hook
+  const navigate = useNavigate(); // React Router v6 navigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/auth/login', { email, password });
 
-      // Save the token in localStorage
+    try {
+      // Log email and password to ensure they are being captured
+      console.log("Submitted Email:", email);
+      console.log("Submitted Password:", password);
+
+      // Send POST request to your backend login endpoint
+      const response = await axios.post('/auth/login', { email, password }); // Make sure the route matches your backend
+
+      console.log("Response from server:", response.data);
+
+      // Save JWT token in localStorage
       localStorage.setItem('authToken', response.data.token);
 
-      // Redirect to the dashboard after successful login
-      navigate.push('/dashboard');
+      // Navigate to the dashboard after successful login
+      navigate('/dashboard');
     } catch (error) {
-      setMessage('Error during login');
+      console.error("Login error:", error);
+
+      // Display error message from server or fallback message
+      if (error.response && error.response.data.message) {
+        setMessage(error.response.data.message);
+      } else {
+        setMessage('An error occurred during login. Please try again.');
+      }
     }
   };
 
@@ -47,6 +62,8 @@ const Login = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+
+      {/* Show the error message if it exists */}
       {message && <p>{message}</p>}
     </div>
   );

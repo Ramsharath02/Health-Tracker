@@ -11,11 +11,12 @@ const Register = () => {
     e.preventDefault();
     try {
       // Make the API request
-      const response = await axios.post('/auth/register', {
+      const response = await axios.post('http://localhost:5000/api/auth/register', {
         name,
         email,
         password,
       });
+      console.log(response.data)
       // Set the message based on the response
       if (response.status === 200) {
         setMessage('Registration successful!');

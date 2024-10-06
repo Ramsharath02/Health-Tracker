@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import FlipCard from './components/FlipCard'; // Import FlipCard from a separate file
+import Login from './components/Login';
+import Register from './components/Register';
 import './App.css'; // Import your CSS styles
 import Dashboard from './components/Dashboard'; // Import Dashboard
 import PrivateRoute from './components/PrivateRoute'; // Import PrivateRoute
@@ -10,11 +11,9 @@ function App() {
     <Router>
       <Routes>
         {/* Route for Login */}
-        <Route path="/login" element={<FlipCard isLoginForm={true} />} />
-        
-        {/* Route for Register */}
-        <Route path="/register" element={<FlipCard isLoginForm={false} />} />
-        
+        <Route path="/login" element={<Login/>} />
+         { /* Route for Register */        }
+        <Route path="/register" element={<Register/>} />
         {/* Protected Route for Dashboard */}
         <Route 
           path="/dashboard" 
